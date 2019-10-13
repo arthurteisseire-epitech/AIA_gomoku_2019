@@ -10,11 +10,16 @@ def turn():
     send(str(randrange(19)) + ',' + str(randrange(19)))
 
 
+def end():
+    exit(0)
+
+
 commands = [
     ["START", start],
     ["RESTART", start],
     ["TURN", turn],
     ["BEGIN", turn],
+    ["END", end],
 ]
 
 
