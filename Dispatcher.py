@@ -1,3 +1,4 @@
+import re
 from random import randrange
 from Board import Board
 
@@ -16,7 +17,7 @@ class Dispatcher:
         ]
 
     def dispatch(self, line):
-        tokens = line.strip('\r\n').split(' ')
+        tokens = list(filter(lambda x: x != '', re.split('[\r\n ]', line)))
         for command in self.__commands:
             if command[0] == tokens[0]:
                 return command[1](tokens[1:])
