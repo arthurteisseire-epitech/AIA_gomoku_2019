@@ -1,7 +1,6 @@
 import re
 from AI import AI
 from Board import Board, Tile
-from output import debug
 
 
 class Dispatcher:
