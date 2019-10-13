@@ -1,31 +1,33 @@
 from random import randrange
-from output import send, debug
 
 
-def start(args):
-    send("OK")
+class Command:
+    @staticmethod
+    def start(args):
+        return "OK"
+
+    @staticmethod
+    def turn(args):
+        return str(randrange(19)) + ',' + str(randrange(19))
+
+    @staticmethod
+    def end(args):
+        return "end"
 
 
-def turn(args):
-    send(str(randrange(19)) + ',' + str(randrange(19)))
+class Dispatcher:
+    def __init__(self):
+        self.commands = [
+            ["START", Command.start],
+            ["RESTART", Command.start],
+            ["TURN", Command.turn],
+            ["BEGIN", Command.turn],
+            ["END", Command.end],
+        ]
 
-
-def end(args):
-    exit(0)
-
-
-commands = [
-    ["START", start],
-    ["RESTART", start],
-    ["TURN", turn],
-    ["BEGIN", turn],
-    ["END", end],
-]
-
-
-def dispatch(line):
-    tokens = line.strip('\r\n').split(' ')
-    for command in commands:
-        if command[0] == tokens[0]:
-            command[1](tokens[:1])
-            break
+    def dispatch(self, line):
+        tokens = line.strip('\r\n').split(' ')
+        for command in self.commands:
+            if command[0] == tokens[0]:
+                return command[1](tokens[:1])
+        return ""
