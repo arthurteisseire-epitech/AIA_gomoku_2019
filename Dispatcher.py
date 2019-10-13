@@ -10,6 +10,7 @@ class Dispatcher:
 
         self.__commands = [
             ["START", self.start],
+            ["RESTART", self.restart],
             ["ABOUT", self.about],
             ["TURN", self.turn],
             ["BEGIN", self.begin],
@@ -26,6 +27,10 @@ class Dispatcher:
     def start(self, args):
         if len(args) == 1 and args[0].isdigit():
             self.board = Board(int(args[0]))
+        return "OK"
+
+    def restart(self, *unused):
+        self.board = Board(self.board.size)
         return "OK"
 
     def begin(self, *unused):
