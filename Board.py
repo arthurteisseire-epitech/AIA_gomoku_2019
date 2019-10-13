@@ -5,6 +5,7 @@ class Tile(Enum):
     EMPTY = 0
     ENEMY = 1
     MINE = 2
+    OUT_OF_BOUND = 3
 
 
 class Board:
@@ -17,3 +18,6 @@ class Board:
 
     def set_info_at(self, x, y, tile):
         self.board[x][y] = tile
+
+    def is_in(self, x, y):
+        return 0 <= x < self.size and 0 <= y < self.size
