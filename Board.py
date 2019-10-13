@@ -14,3 +14,6 @@ class Board:
 
     def get_info_at(self, x, y):
         return self.board[x][y]
+
+    def set_info_at(self, x, y, tile):
+        self.board[x][y] = tile

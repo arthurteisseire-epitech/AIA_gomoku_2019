@@ -11,3 +11,7 @@ class BoardTest(TestCase):
 
     def test_get_info_at(self):
         self.assertEqual(Tile.EMPTY, self.board.get_info_at(0, 0))
+
+    def test_set_info_at(self):
+        self.board.set_info_at(0, 0, Tile.ENEMY)
+        self.assertEqual(Tile.ENEMY, self.board.get_info_at(0, 0))
