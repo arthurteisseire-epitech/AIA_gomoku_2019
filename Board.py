@@ -19,10 +19,10 @@ class Board:
         return self.board[x][y]
 
     def set_info_at(self, x, y, tile):
-        if self.is_in(x, y):
-            self.board[x][y] = tile
-            return True
-        return False
+        if not self.is_in(x, y):
+            return False
+        self.board[x][y] = tile
+        return True
 
     def is_in(self, x, y):
         return 0 <= x < self.size and 0 <= y < self.size
