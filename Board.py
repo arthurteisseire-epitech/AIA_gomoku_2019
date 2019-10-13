@@ -14,6 +14,8 @@ class Board:
         self.size = size
 
     def get_info_at(self, x, y):
+        if not self.is_in(x, y):
+            return Tile.OUT_OF_BOUND
         return self.board[x][y]
 
     def set_info_at(self, x, y, tile):
