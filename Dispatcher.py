@@ -9,6 +9,7 @@ class Dispatcher:
         self.__commands = [
             ["START", self.start],
             ["RESTART", self.start],
+            ["ABOUT", self.about],
             ["TURN", self.turn],
             ["BEGIN", self.turn],
             ["END", self.end],
@@ -28,6 +29,9 @@ class Dispatcher:
 
     def turn(self, args):
         return str(randrange(self.board.size)) + ',' + str(randrange(self.board.size))
+
+    def about(self, args):
+        return "name=gomoku-ai, version=1.0, author=boom, country=France"
 
     def end(self, args):
         return "end"
