@@ -3,7 +3,7 @@ from enum import Enum
 
 class Tile(Enum):
     EMPTY = 0
-    ENEMY = 1
+    OPPONENT = 1
     MINE = 2
     OUT_OF_BOUND = 3
 

@@ -33,7 +33,7 @@ class BoardTest(TestCase):
         self.assertFalse(self.board.set_info_at(0, 19, Tile.MINE))
 
     def test_set_info_at(self):
-        self.assertTrue(self.board.set_info_at(0, 0, Tile.ENEMY))
+        self.assertTrue(self.board.set_info_at(0, 0, Tile.OPPONENT))
         self.assertTrue(self.board.set_info_at(18, 18, Tile.MINE))
-        self.assertEqual(Tile.ENEMY, self.board.get_info_at(0, 0))
+        self.assertEqual(Tile.OPPONENT, self.board.get_info_at(0, 0))
         self.assertEqual(Tile.MINE, self.board.get_info_at(18, 18))

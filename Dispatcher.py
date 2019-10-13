@@ -1,6 +1,7 @@
 import re
-from random import randrange
-from Board import Board
+from AI import AI
+from Board import Board, Tile
+from output import debug
 
 
 class Dispatcher:
@@ -9,10 +10,9 @@ class Dispatcher:
 
         self.__commands = [
             ["START", self.start],
-            ["RESTART", self.start],
             ["ABOUT", self.about],
             ["TURN", self.turn],
-            ["BEGIN", self.turn],
+            ["BEGIN", self.begin],
             ["END", self.end],
         ]
 
@@ -28,11 +28,24 @@ class Dispatcher:
             self.board = Board(int(args[0]))
         return "OK"
 
-    def turn(self, args):
-        return str(randrange(self.board.size)) + ',' + str(randrange(self.board.size))
+    def begin(self, *unused):
+        middle = self.board.size // 2 + 1
+        self.board.set_info_at(middle, middle, Tile.OPPONENT)
+        return str(middle) + ',' + str(middle)
 
-    def about(self, args):
+    def turn(self, args):
+        if len(args) != 1:
+            return ''
+        pos = args[0].split(',')
+        if len(pos) != 2 or pos[0].isdigit is False or pos[1].isdigit is False:
+            return ''
+        self.board.set_info_at(int(pos[0]), int(pos[1]), Tile.OPPONENT)
+        x, y = AI.next_move(self.board)
+        self.board.set_info_at(x, y, Tile.MINE)
+        return str(x) + ',' + str(y)
+
+    def about(self, *unused):
         return "name=gomoku-ai, version=1.0, author=boom, country=France"
 
-    def end(self, args):
+    def end(self, *unused):
         return "end"
