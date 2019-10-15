@@ -1,0 +1,1 @@
+pyinstaller --onefile Z:\pbrain-gomoku-ai.py
