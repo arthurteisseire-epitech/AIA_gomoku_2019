@@ -6,6 +6,16 @@ class BoardTest(TestCase):
     def setUp(self):
         self.board = Board(19)
 
+    def test_custom_board(self):
+        toto = Board(3, [
+            [Tile.MINE, Tile.EMPTY, Tile.EMPTY],
+            [Tile.EMPTY, Tile.EMPTY, Tile.EMPTY],
+            [Tile.EMPTY, Tile.EMPTY, Tile.OPPONENT]
+        ])
+        self.assertEqual(Tile.MINE, toto.get_info_at(0, 0))
+        self.assertEqual(Tile.OPPONENT, toto.get_info_at(2, 2))
+        self.assertEqual(Tile.EMPTY, toto.get_info_at(1, 1))
+
     def test_size(self):
         self.assertEqual(19, self.board.size)
 

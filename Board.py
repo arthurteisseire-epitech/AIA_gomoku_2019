@@ -9,8 +9,11 @@ class Tile(Enum):
 
 
 class Board:
-    def __init__(self, size):
-        self.board = [[Tile.EMPTY for i in range(0, size)] for i in range(0, size)]
+    def __init__(self, size, board=None):
+        if board is None:
+            self.board = [[Tile.EMPTY for i in range(0, size)] for i in range(0, size)]
+        else:
+            self.board = board
         self.size = size
 
     def get_info_at(self, x, y):
