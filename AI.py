@@ -1,13 +1,12 @@
 from Board import Board, Tile
 from random import randrange
+from Pos import Pos
 
 
 class AI:
     @staticmethod
     def next_move(board: Board):
-        x = randrange(board.size)
-        y = randrange(board.size)
-        while board.get_info_at(x, y) != Tile.EMPTY:
-            x = randrange(board.size)
-            y = randrange(board.size)
-        return x, y
+        pos = Pos(randrange(board.size), randrange(board.size))
+        while board.get_info_at(pos) != Tile.EMPTY:
+            pos = Pos(randrange(board.size), randrange(board.size))
+        return pos

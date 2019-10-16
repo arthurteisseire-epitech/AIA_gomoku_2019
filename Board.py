@@ -1,4 +1,5 @@
 from enum import Enum
+from Pos import Pos
 
 
 class Tile(Enum):
@@ -16,16 +17,16 @@ class Board:
             self.board = board
         self.size = size
 
-    def get_info_at(self, x, y):
-        if not self.is_in(x, y):
+    def get_info_at(self, pos: Pos):
+        if not self.is_in(pos):
             return Tile.OUT_OF_BOUND
-        return self.board[x][y]
+        return self.board[pos.x][pos.y]
 
-    def set_info_at(self, x, y, tile):
-        if not self.is_in(x, y):
+    def set_info_at(self, pos: Pos, tile):
+        if not self.is_in(pos):
             return False
-        self.board[x][y] = tile
+        self.board[pos.x][pos.y] = tile
         return True
 
-    def is_in(self, x, y):
-        return 0 <= x < self.size and 0 <= y < self.size
+    def is_in(self, pos: Pos):
+        return 0 <= pos.x < self.size and 0 <= pos.y < self.size

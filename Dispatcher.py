@@ -1,6 +1,7 @@
 import re
 from AI import AI
 from Board import Board, Tile
+from Pos import Pos
 
 
 class Dispatcher:
@@ -40,13 +41,13 @@ class Dispatcher:
     def turn(self, args):
         if len(args) != 1:
             return ''
-        pos = args[0].split(',')
-        if len(pos) != 2 or pos[0].isdigit is False or pos[1].isdigit is False:
+        input_pos = args[0].split(',')
+        if len(input_pos) != 2 or input_pos[0].isdigit is False or input_pos[1].isdigit is False:
             return ''
-        self.board.set_info_at(int(pos[0]), int(pos[1]), Tile.OPPONENT)
-        x, y = AI.next_move(self.board)
-        self.board.set_info_at(x, y, Tile.MINE)
-        return str(x) + ',' + str(y)
+        self.board.set_info_at(int(input_pos[0]), int(input_pos[1]), Tile.OPPONENT)
+        pos = AI.next_move(self.board)
+        self.board.set_info_at(pos, Tile.MINE)
+        return str(pos.x) + ',' + str(pos.y)
 
     def about(self, *unused):
         return "name=gomoku-ai, version=1.0, author=boom, country=France"
