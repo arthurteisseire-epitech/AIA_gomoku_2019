@@ -3,13 +3,10 @@ NAME = pbrain-gomoku-ai
 all: ${NAME}
 
 ${NAME}:
-	pyinstaller --onefile ${NAME}.py
-	cp dist/${NAME} .
+	cp ${NAME}.py ${NAME}
+	chmod +x ${NAME}
 
-clean:
-	rm -rf dist build ${NAME}.spec
-
-fclean: clean
+fclean:
 	rm -rf ${NAME}
 
 re: fclean all
