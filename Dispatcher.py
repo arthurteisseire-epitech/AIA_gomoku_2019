@@ -7,6 +7,7 @@ from Pos import Pos
 class Dispatcher:
     def __init__(self, board):
         self.board = board
+        self.err_msg = ''
 
         self.__commands = [
             ["START", self.start],
@@ -18,11 +19,14 @@ class Dispatcher:
         ]
 
     def dispatch(self, line):
+        self.err_msg = "DEBUG " + line.strip('\r\n') + ": invalid command."
         tokens = list(filter(lambda x: x != '', re.split('[\r\n ]', line)))
+        if not tokens:
+            return ""
         for command in self.__commands:
             if command[0] == tokens[0]:
                 return command[1](tokens[1:])
-        return ""
+        return self.err_msg
 
     def start(self, args):
         if len(args) == 1 and args[0].isdigit():
@@ -40,11 +44,11 @@ class Dispatcher:
 
     def turn(self, args):
         if len(args) != 1:
-            return ''
+            return self.err_msg
         input_pos = args[0].split(',')
         if len(input_pos) != 2 or input_pos[0].isdigit is False or input_pos[1].isdigit is False:
-            return ''
-        self.board.set_info_at(int(input_pos[0]), int(input_pos[1]), Tile.OPPONENT)
+            return self.err_msg
+        self.board.set_info_at(Pos(int(input_pos[0]), int(input_pos[1])), Tile.OPPONENT)
         pos = AI.next_move(self.board)
         self.board.set_info_at(pos, Tile.MINE)
         return str(pos.x) + ',' + str(pos.y)
