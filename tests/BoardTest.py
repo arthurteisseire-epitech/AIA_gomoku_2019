@@ -54,3 +54,11 @@ class BoardTest(TestCase):
             [Tile.MINE, Tile.EMPTY, Tile.OPPONENT]
         ])
         self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT], custom_board.get_row_at(0))
+
+    def test_get_col_at(self):
+        custom_board = Board(1, [
+            [Tile.MINE, Tile.MINE],
+            [Tile.MINE, Tile.EMPTY],
+            [Tile.MINE, Tile.OPPONENT],
+        ])
+        self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT], custom_board.get_col_at(1))
