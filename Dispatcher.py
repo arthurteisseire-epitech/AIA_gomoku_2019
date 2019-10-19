@@ -48,10 +48,10 @@ class Dispatcher:
         input_pos = args[0].split(',')
         if len(input_pos) != 2 or input_pos[0].isdigit is False or input_pos[1].isdigit is False:
             return self.err_msg
-        self.board.set_info_at(Pos(int(input_pos[0]), int(input_pos[1])), Tile.OPPONENT)
+        self.board.set_info_at(Pos(int(input_pos[1]), int(input_pos[0])), Tile.OPPONENT)
         pos = AI.next_move(self.board)
         self.board.set_info_at(pos, Tile.MINE)
-        return str(pos.x) + ',' + str(pos.y)
+        return pos.to_string()
 
     def about(self, *unused):
         return "name=gomoku-ai, version=1.0, author=boom, country=France"

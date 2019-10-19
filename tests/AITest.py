@@ -12,6 +12,6 @@ class AITest(TestCase):
             [Tile.MINE, Tile.MINE, Tile.EMPTY],
             [Tile.EMPTY, Tile.EMPTY, Tile.OPPONENT]
         ])
-        self.assertEqual(0, AI.evaluation_of_position(custom_board, Pos(-1, 0)))
+        self.assertRaises(Exception, AI.evaluation_of_position, custom_board, Pos(-1, 0))
         self.assertEqual(1, AI.evaluation_of_position(custom_board, Pos(0, 1)))
         self.assertEqual(2, AI.evaluation_of_position(custom_board, Pos(1, 2)))

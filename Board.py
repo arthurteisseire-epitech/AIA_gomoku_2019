@@ -20,13 +20,16 @@ class Board:
     def get_info_at(self, pos: Pos):
         if not self.is_in(pos):
             return Tile.OUT_OF_BOUND
-        return self.board[pos.x][pos.y]
+        return self.board[pos.y][pos.x]
 
     def set_info_at(self, pos: Pos, tile):
         if not self.is_in(pos):
             return False
-        self.board[pos.x][pos.y] = tile
+        self.board[pos.y][pos.x] = tile
         return True
 
     def is_in(self, pos: Pos):
         return 0 <= pos.x < self.size and 0 <= pos.y < self.size
+
+    def get_row_at(self, y):
+        return self.board[y]
