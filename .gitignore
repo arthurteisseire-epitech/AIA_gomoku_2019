@@ -4,3 +4,4 @@ build
 dist
 *.spec
 tests/_trial_temp
+pbrain-gomoku-ai
