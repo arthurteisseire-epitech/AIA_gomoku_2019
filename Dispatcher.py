@@ -35,8 +35,7 @@ class Dispatcher:
         return self.err_msg
 
     def start(self, args):
-        if len(args) == 1 and args[0].isdigit():
-            self.board = Board(int(args[0]))
+        self.board = Board(int(args[0]))
         return "OK"
 
     def restart(self, *unused):
@@ -49,11 +48,7 @@ class Dispatcher:
         return str(middle) + ',' + str(middle)
 
     def turn(self, args):
-        if len(args) != 1:
-            return self.err_msg
         input_pos = args[0].split(',')
-        if len(input_pos) != 2 or input_pos[0].isdigit is False or input_pos[1].isdigit is False:
-            return self.err_msg
         self.board.set_info_at(Pos(int(input_pos[1]), int(input_pos[0])), Tile.OPPONENT)
         pos = AI.next_move(self.board)
         self.board.set_info_at(pos, Tile.MINE)
