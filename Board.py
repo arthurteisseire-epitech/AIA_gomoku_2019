@@ -44,7 +44,7 @@ class Board:
             offset = 0
         else:
             board = self.board
-        return [row[i + offset] for i, row in enumerate(board) if 0 <= i + offset < len(row)]
+        return [row[offset + i] for i, row in enumerate(board) if 0 <= offset + i < len(row)]
 
     def get_diagonal_top_right_to_bottom_left(self, pos):
         offset = pos.y + pos.x
