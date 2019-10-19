@@ -87,5 +87,6 @@ class BoardTest(TestCase):
         self.assertEqual([Tile.MINE],
                          custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 3)))
 
-        self.assertEqual([Tile.MINE],
-                         custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 0)))
+        self.assertEqual([Tile.MINE, Tile.EMPTY],
+                         custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 1)))
+

@@ -38,8 +38,10 @@ class Board:
         return [row[x] for row in self.board]
 
     def get_diagonal_top_left_to_bottom_right(self, pos):
-        initial_x = abs(pos.x - pos.y)
-        res = []
-        for i in range(0, self.size - initial_x):
-            res.append(self.board[i][initial_x + i])
-        return res
+        offset = pos.x - pos.y
+        if offset < 0:
+            board = self.board[abs(offset):]
+            offset = 0
+        else:
+            board = self.board
+        return [row[i + offset] for i, row in enumerate(board) if 0 <= i + offset < len(row)]
