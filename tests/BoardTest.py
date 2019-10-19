@@ -48,3 +48,9 @@ class BoardTest(TestCase):
         self.assertTrue(self.board.set_info_at(Pos(18, 18), Tile.MINE))
         self.assertEqual(Tile.OPPONENT, self.board.get_info_at(Pos(0, 0)))
         self.assertEqual(Tile.MINE, self.board.get_info_at(Pos(18, 18)))
+
+    def test_get_row_at(self):
+        custom_board = Board(1, [
+            [Tile.MINE, Tile.EMPTY, Tile.OPPONENT]
+        ])
+        self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT], custom_board.get_row_at(0))

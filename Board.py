@@ -33,3 +33,6 @@ class Board:
 
     def get_row_at(self, y):
         return self.board[y]
+
+    def get_col_at(self, x):
+        return [row[x] for row in self.board]
