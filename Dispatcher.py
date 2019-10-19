@@ -20,6 +20,12 @@ class Dispatcher:
 
     def dispatch(self, line):
         self.err_msg = "DEBUG " + line.strip('\r\n') + ": invalid command."
+        try:
+            return self.safe_dispatch(line)
+        except:
+            return self.err_msg
+
+    def safe_dispatch(self, line):
         tokens = list(filter(lambda x: x != '', re.split('[\r\n ]', line)))
         if not tokens:
             return ""
