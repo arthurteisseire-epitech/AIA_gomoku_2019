@@ -7,8 +7,6 @@ from Pos import Pos
 class Dispatcher:
     def __init__(self, board):
         self.board = board
-        self.err_msg = ''
-
         self.__commands = [
             ["START", self.start],
             ["RESTART", self.restart],
@@ -19,11 +17,10 @@ class Dispatcher:
         ]
 
     def dispatch(self, line):
-        self.err_msg = "DEBUG " + line.strip('\r\n') + ": invalid command."
         try:
             return self.safe_dispatch(line)
         except:
-            return self.err_msg
+            return "DEBUG " + line.strip('\r\n') + ": invalid command."
 
     def safe_dispatch(self, line):
         tokens = list(filter(lambda x: x != '', re.split('[\r\n ]', line)))
@@ -32,7 +29,7 @@ class Dispatcher:
         for command in self.__commands:
             if command[0] == tokens[0]:
                 return command[1](tokens[1:])
-        return self.err_msg
+        raise
 
     def start(self, args):
         self.board = Board(int(args[0]))
