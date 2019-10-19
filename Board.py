@@ -36,3 +36,10 @@ class Board:
 
     def get_col_at(self, x):
         return [row[x] for row in self.board]
+
+    def get_diagonal_top_left_to_bottom_right(self, pos):
+        initial_x = abs(pos.x - pos.y)
+        res = []
+        for i in range(0, self.size - initial_x):
+            res.append(self.board[i][initial_x + i])
+        return res
