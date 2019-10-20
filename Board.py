@@ -47,7 +47,7 @@ class Board:
     def get_diagonal_top_right_to_bottom_left(self, pos, distance=0):
         offset = pos.y + pos.x
         diag = [row[offset - i] for i, row in enumerate(self.board) if 0 <= offset - i < len(row)]
-        return Board.__get_subarray_with_distance(diag, distance, pos.y - (self.size - len(diag)))
+        return Board.__get_subarray_with_distance(diag, distance, max(0, pos.y - (self.size - len(diag))))
 
     @staticmethod
     def __get_subarray_with_distance(array, distance, i):
