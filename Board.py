@@ -33,19 +33,18 @@ class Board:
 
     def get_row_at(self, pos, distance=0):
         row = self.board[pos.y]
-        if distance == 0:
-            return row
-        left_x = max(0, pos.x - distance)
-        right_x = min(self.size, pos.x + distance + 1)
-        return row[left_x:][:right_x]
+        return self.__get_subarray_with_distance(row, distance, pos.x)
 
     def get_col_at(self, pos, distance=0):
         col = [row[pos.x] for row in self.board]
+        return self.__get_subarray_with_distance(col, distance, pos.y)
+
+    def __get_subarray_with_distance(self, array, distance, i):
         if distance == 0:
-            return col
-        top_y = max(0, pos.y - distance)
-        bot_y = min(self.size, pos.y + distance + 1)
-        return col[top_y:][:bot_y]
+            return array
+        top_y = max(0, i - distance)
+        bot_y = min(self.size, i + distance + 1)
+        return array[top_y:][:bot_y]
 
     def get_diagonal_top_left_to_bottom_right(self, pos):
         offset = pos.x - pos.y
