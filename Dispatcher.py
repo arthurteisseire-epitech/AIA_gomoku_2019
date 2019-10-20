@@ -3,7 +3,6 @@ import sys
 from AI import AI
 from Board import Board, Tile
 from Pos import Pos
-from output import debug
 
 
 class Dispatcher:
