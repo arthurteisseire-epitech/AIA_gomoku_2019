@@ -34,12 +34,8 @@ class Board:
     def get_row_at(self, pos, distance=0):
         if distance == 0:
             return self.board[pos.y]
-        left_x = pos.x - distance
-        if left_x < 0:
-            left_x = 0
-        right_x = pos.x + distance + 1
-        if right_x >= self.size:
-            right_x = self.size
+        left_x = max(0, pos.x - distance)
+        right_x = min(self.size, pos.x + distance + 1)
         return self.board[pos.y][left_x:][:right_x]
 
     def get_col_at(self, pos, distance=0):
@@ -47,7 +43,7 @@ class Board:
         if distance == 0:
             return col
         top_y = max(0, pos.y - distance)
-        bot_y = min(pos.y + distance + 1, self.size)
+        bot_y = min(self.size, pos.y + distance + 1)
         return col[top_y:][:bot_y]
 
     def get_diagonal_top_left_to_bottom_right(self, pos):
