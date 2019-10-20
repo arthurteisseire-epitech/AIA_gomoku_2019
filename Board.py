@@ -43,9 +43,9 @@ class Board:
     def __get_subarray_with_distance(array, distance, i):
         if distance == 0:
             return array
-        top_y = max(0, i - distance)
-        bot_y = min(len(array), i + distance + 1)
-        return array[top_y:][:bot_y]
+        left_i = max(0, i - distance)
+        right_i = min(len(array), i + distance + 1)
+        return array[left_i:][:right_i]
 
     def get_diagonal_top_left_to_bottom_right(self, pos):
         offset = pos.x - pos.y
