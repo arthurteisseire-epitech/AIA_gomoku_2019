@@ -67,6 +67,12 @@ class BoardTest(TestCase):
     def test_get_col_at(self):
         self.assertEqual([Tile.EMPTY, Tile.EMPTY, Tile.EMPTY, Tile.EMPTY], self.custom_board.get_col_at(Pos(0, 1)))
 
+    def test_get_col_at_with_distance(self):
+        self.assertEqual([Tile.MINE, Tile.MINE], self.custom_board.get_col_at(Pos(0, 0), 1))
+        self.assertEqual([Tile.MINE, Tile.MINE, Tile.MINE], self.custom_board.get_col_at(Pos(1, 0), 1))
+        self.assertEqual([Tile.MINE, Tile.MINE, Tile.MINE, Tile.MINE], self.custom_board.get_col_at(Pos(1, 0), 3))
+        self.assertEqual([Tile.EMPTY, Tile.EMPTY, Tile.EMPTY], self.custom_board.get_col_at(Pos(1, 1), 1))
+
     def test_get_diagonal_top_left_to_bottom_right(self):
         self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT, Tile.MINE],
                          self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 0)))
