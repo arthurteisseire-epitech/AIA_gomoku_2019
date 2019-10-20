@@ -102,6 +102,19 @@ class BoardTest(TestCase):
         self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT],
                          self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(1, 1), 1))
 
+        self.assertEqual([Tile.OPPONENT, Tile.MINE],
+                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(1, 3), 1))
+        self.assertEqual([Tile.MINE],
+                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 0), 1))
+        self.assertEqual([Tile.EMPTY, Tile.OPPONENT],
+                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 2), 1))
+        self.assertEqual([Tile.OPPONENT, Tile.MINE],
+                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 3), 1))
+        self.assertEqual([Tile.EMPTY, Tile.OPPONENT, Tile.MINE],
+                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 3), 2))
+        self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT, Tile.MINE],
+                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 3), 12))
+
     def test_get_diagonal_top_right_to_bottom_left(self):
         self.assertEqual([Tile.MINE, Tile.OPPONENT, Tile.EMPTY, Tile.MINE],
                          self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 0)))
