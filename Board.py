@@ -4,8 +4,8 @@ from Pos import Pos
 
 class Tile(Enum):
     EMPTY = 0
-    OPPONENT = 1
-    MINE = 2
+    MINE = 1
+    OPPONENT = 2
     OUT_OF_BOUND = 3
 
 

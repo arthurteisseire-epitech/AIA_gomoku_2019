@@ -4,4 +4,4 @@ class Pos:
         self.x = x
 
     def to_string(self):
-        return str(self.x) + ' ' + str(self.y)
+        return str(self.x) + ',' + str(self.y)
