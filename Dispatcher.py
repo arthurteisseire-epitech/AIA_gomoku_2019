@@ -32,7 +32,10 @@ class Dispatcher:
         raise
 
     def start(self, args):
-        self.board = Board(int(args[0]))
+        size = int(args[0])
+        if size <= 0:
+            raise
+        self.board = Board(size)
         return "OK"
 
     def restart(self, *unused):
