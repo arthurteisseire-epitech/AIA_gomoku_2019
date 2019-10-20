@@ -31,8 +31,16 @@ class Board:
     def is_in(self, pos: Pos):
         return 0 <= pos.x < self.size and 0 <= pos.y < self.size
 
-    def get_row_at(self, pos):
-        return self.board[pos.y]
+    def get_row_at(self, pos, distance=0):
+        if distance == 0:
+            return self.board[pos.y]
+        left_x = pos.x - distance
+        if left_x < 0:
+            left_x = 0
+        right_x = pos.x + distance + 1
+        if right_x >= self.size:
+            right_x = self.size
+        return self.board[pos.y][left_x:][:right_x]
 
     def get_col_at(self, pos):
         return [row[pos.x] for row in self.board]
