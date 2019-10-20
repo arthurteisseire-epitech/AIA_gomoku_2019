@@ -39,6 +39,15 @@ class Board:
         col = [row[pos.x] for row in self.board]
         return Board.__get_subarray_with_distance(col, distance, pos.y)
 
+    def get_diagonal_top_left_to_bottom_right(self, pos, distance=0):
+        offset = pos.x - pos.y
+        diag = [row[offset + i] for i, row in enumerate(self.board) if 0 <= offset + i < len(row)]
+        return Board.__get_subarray_with_distance(diag, distance, pos.x)
+
+    def get_diagonal_top_right_to_bottom_left(self, pos):
+        offset = pos.y + pos.x
+        return [row[offset - i] for i, row in enumerate(self.board) if 0 <= offset - i < len(row)]
+
     @staticmethod
     def __get_subarray_with_distance(array, distance, i):
         if distance == 0:
@@ -46,11 +55,3 @@ class Board:
         left_i = max(0, i - distance)
         right_i = min(len(array), i + distance + 1)
         return array[left_i:][:right_i]
-
-    def get_diagonal_top_left_to_bottom_right(self, pos):
-        offset = pos.x - pos.y
-        return [row[offset + i] for i, row in enumerate(self.board) if 0 <= offset + i < len(row)]
-
-    def get_diagonal_top_right_to_bottom_left(self, pos):
-        offset = pos.y + pos.x
-        return [row[offset - i] for i, row in enumerate(self.board) if 0 <= offset - i < len(row)]
