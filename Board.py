@@ -32,11 +32,12 @@ class Board:
         return 0 <= pos.x < self.size and 0 <= pos.y < self.size
 
     def get_row_at(self, pos, distance=0):
+        row = self.board[pos.y]
         if distance == 0:
-            return self.board[pos.y]
+            return row
         left_x = max(0, pos.x - distance)
         right_x = min(self.size, pos.x + distance + 1)
-        return self.board[pos.y][left_x:][:right_x]
+        return row[left_x:][:right_x]
 
     def get_col_at(self, pos, distance=0):
         col = [row[pos.x] for row in self.board]
