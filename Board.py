@@ -31,11 +31,11 @@ class Board:
     def is_in(self, pos: Pos):
         return 0 <= pos.x < self.size and 0 <= pos.y < self.size
 
-    def get_row_at(self, y):
-        return self.board[y]
+    def get_row_at(self, pos):
+        return self.board[pos.y]
 
-    def get_col_at(self, x):
-        return [row[x] for row in self.board]
+    def get_col_at(self, pos):
+        return [row[pos.x] for row in self.board]
 
     def get_diagonal_top_left_to_bottom_right(self, pos):
         offset = pos.x - pos.y

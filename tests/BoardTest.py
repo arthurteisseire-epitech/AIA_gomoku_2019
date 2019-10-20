@@ -53,7 +53,7 @@ class BoardTest(TestCase):
         custom_board = Board(1, [
             [Tile.MINE, Tile.EMPTY, Tile.OPPONENT]
         ])
-        self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT], custom_board.get_row_at(0))
+        self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT], custom_board.get_row_at(Pos(0, 0)))
 
     def test_get_col_at(self):
         custom_board = Board(1, [
@@ -61,7 +61,7 @@ class BoardTest(TestCase):
             [Tile.MINE, Tile.EMPTY],
             [Tile.MINE, Tile.OPPONENT],
         ])
-        self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT], custom_board.get_col_at(1))
+        self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT], custom_board.get_col_at(Pos(0, 1)))
 
     def test_get_diagonal_top_left_to_bottom_right(self):
         custom_board = Board(4, [
