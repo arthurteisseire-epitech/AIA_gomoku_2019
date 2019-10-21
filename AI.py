@@ -27,3 +27,15 @@ class AI:
         weight_principal_diagonal = len(list(filter(lambda x: x == tile, board.get_principal_diagonal(pos)))) * weight
         weight_counter_diagonal = len(list(filter(lambda x: x == tile, board.get_counter_diagonal(pos)))) * weight
         return weight_in_col + weight_in_row + weight_principal_diagonal + weight_counter_diagonal
+
+    @staticmethod
+    def find_best_position(board: Board):
+        board_weight = []
+        for y in range(0, board.size):
+            for x in range(0, board.size):
+                try:
+                    board_weight.append(AI.evaluation_of_position(board, Pos(y, x)))
+                except:
+                    board_weight.append(0)
+        idx = board_weight.index(max(board_weight))
+        return Pos(idx // board.size, idx % board.size)
