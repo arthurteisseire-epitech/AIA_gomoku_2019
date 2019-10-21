@@ -16,20 +16,14 @@ class AI:
     def evaluation_of_position(board: Board, pos: Pos):
         if board.get_info_at(pos) != Tile.EMPTY:
             raise Exception
-        weight_mine_in_row = len(list(filter(lambda x: x == Tile.MINE, board.get_row_at(pos)))) * Weight.MINE
-        weight_mine_in_col = len(list(filter(lambda x: x == Tile.MINE, board.get_col_at(pos)))) * Weight.MINE
-        weight_opponent_in_row = len(
-            list(filter(lambda x: x == Tile.OPPONENT, board.get_row_at(pos)))) * Weight.OPPONENT
-        weight_opponent_in_col = len(
-            list(filter(lambda x: x == Tile.OPPONENT, board.get_col_at(pos)))) * Weight.OPPONENT
-        weight_mine_top_left_to_bottom_right = len(
-            list(filter(lambda x: x == Tile.MINE, board.get_principal_diagonal(pos)))) * Weight.MINE
-        weight_mine_top_right_to_bottom_left = len(
-            list(filter(lambda x: x == Tile.MINE, board.get_counter_diagonal(pos)))) * Weight.MINE
-        weight_opponent_top_left_to_bottom_right = len(list(
-            filter(lambda x: x == Tile.OPPONENT, board.get_principal_diagonal(pos)))) * Weight.OPPONENT
-        weight_opponent_top_right_to_bottom_left = len(list(
-            filter(lambda x: x == Tile.OPPONENT, board.get_counter_diagonal(pos)))) * Weight.OPPONENT
-        return weight_mine_in_row + weight_mine_in_col + weight_opponent_in_row + weight_opponent_in_col + \
-               weight_mine_top_left_to_bottom_right + weight_mine_top_right_to_bottom_left + \
-               weight_opponent_top_left_to_bottom_right + weight_opponent_top_right_to_bottom_left
+        weight_opponent = AI.calc_weight_for(board, pos, Tile.OPPONENT, Weight.OPPONENT)
+        weight_mine = AI.calc_weight_for(board, pos, Tile.MINE, Weight.MINE)
+        return weight_opponent + weight_mine
+
+    @staticmethod
+    def calc_weight_for(board, pos, tile, weight):
+        weight_in_row = len(list(filter(lambda x: x == tile, board.get_row_at(pos)))) * weight
+        weight_in_col = len(list(filter(lambda x: x == tile, board.get_col_at(pos)))) * weight
+        weight_principal_diagonal = len(list(filter(lambda x: x == tile, board.get_principal_diagonal(pos)))) * weight
+        weight_counter_diagonal = len(list(filter(lambda x: x == tile, board.get_counter_diagonal(pos)))) * weight
+        return weight_in_col + weight_in_row + weight_principal_diagonal + weight_counter_diagonal
