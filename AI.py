@@ -16,12 +16,12 @@ class AI:
     def evaluation_of_position(board: Board, pos: Pos):
         if board.get_info_at(pos) != Tile.EMPTY:
             raise Exception
-        weight_opponent = AI.calc_weight_for(board, pos, Tile.OPPONENT, Weight.OPPONENT)
-        weight_mine = AI.calc_weight_for(board, pos, Tile.MINE, Weight.MINE)
+        weight_opponent = AI.__calc_weight_for(board, pos, Tile.OPPONENT, Weight.OPPONENT)
+        weight_mine = AI.__calc_weight_for(board, pos, Tile.MINE, Weight.MINE)
         return weight_opponent + weight_mine
 
     @staticmethod
-    def calc_weight_for(board, pos, tile, weight):
+    def __calc_weight_for(board: Board, pos: Pos, tile: Tile, weight: int):
         weight_in_row = len(list(filter(lambda x: x == tile, board.get_row_at(pos)))) * weight
         weight_in_col = len(list(filter(lambda x: x == tile, board.get_col_at(pos)))) * weight
         weight_principal_diagonal = len(list(filter(lambda x: x == tile, board.get_principal_diagonal(pos)))) * weight
