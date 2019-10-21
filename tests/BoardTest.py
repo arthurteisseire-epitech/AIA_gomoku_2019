@@ -75,84 +75,84 @@ class BoardTest(TestCase):
 
     def test_get_diagonal_top_left_to_bottom_right(self):
         self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT, Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 0)))
-        self.assertEqual(self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 0)),
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(1, 1)))
-        self.assertEqual(self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 0)),
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(2, 2)))
-        self.assertEqual(self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 0)),
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 3)))
+                         self.custom_board.get_principal_diagonal(Pos(0, 0)))
+        self.assertEqual(self.custom_board.get_principal_diagonal(Pos(0, 0)),
+                         self.custom_board.get_principal_diagonal(Pos(1, 1)))
+        self.assertEqual(self.custom_board.get_principal_diagonal(Pos(0, 0)),
+                         self.custom_board.get_principal_diagonal(Pos(2, 2)))
+        self.assertEqual(self.custom_board.get_principal_diagonal(Pos(0, 0)),
+                         self.custom_board.get_principal_diagonal(Pos(3, 3)))
 
         self.assertEqual([Tile.OPPONENT, Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 2)))
-        self.assertEqual(self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 2)),
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(1, 3)))
+                         self.custom_board.get_principal_diagonal(Pos(0, 2)))
+        self.assertEqual(self.custom_board.get_principal_diagonal(Pos(0, 2)),
+                         self.custom_board.get_principal_diagonal(Pos(1, 3)))
 
         self.assertEqual([Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 3)))
+                         self.custom_board.get_principal_diagonal(Pos(0, 3)))
 
         self.assertEqual([Tile.MINE, Tile.EMPTY],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 1)))
+                         self.custom_board.get_principal_diagonal(Pos(3, 1)))
 
     def test_get_diagonal_top_left_to_bottom_right_with_distance(self):
         self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT, Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 0), 3))
+                         self.custom_board.get_principal_diagonal(Pos(0, 0), 3))
         self.assertEqual([Tile.MINE, Tile.EMPTY],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(0, 0), 1))
+                         self.custom_board.get_principal_diagonal(Pos(0, 0), 1))
         self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(1, 1), 1))
+                         self.custom_board.get_principal_diagonal(Pos(1, 1), 1))
 
         self.assertEqual([Tile.OPPONENT, Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(1, 3), 1))
+                         self.custom_board.get_principal_diagonal(Pos(1, 3), 1))
         self.assertEqual([Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 0), 1))
+                         self.custom_board.get_principal_diagonal(Pos(3, 0), 1))
         self.assertEqual([Tile.EMPTY, Tile.OPPONENT],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 2), 1))
+                         self.custom_board.get_principal_diagonal(Pos(3, 2), 1))
         self.assertEqual([Tile.OPPONENT, Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 3), 1))
+                         self.custom_board.get_principal_diagonal(Pos(3, 3), 1))
         self.assertEqual([Tile.EMPTY, Tile.OPPONENT, Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 3), 2))
+                         self.custom_board.get_principal_diagonal(Pos(3, 3), 2))
         self.assertEqual([Tile.MINE, Tile.EMPTY, Tile.OPPONENT, Tile.MINE],
-                         self.custom_board.get_diagonal_top_left_to_bottom_right(Pos(3, 3), 12))
+                         self.custom_board.get_principal_diagonal(Pos(3, 3), 12))
 
     def test_get_diagonal_top_right_to_bottom_left(self):
         self.assertEqual([Tile.MINE, Tile.OPPONENT, Tile.EMPTY, Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 0)))
-        self.assertEqual(self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 0)),
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(1, 2)))
-        self.assertEqual(self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 0)),
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(2, 1)))
-        self.assertEqual(self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 0)),
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(0, 3)))
+                         self.custom_board.get_counter_diagonal(Pos(3, 0)))
+        self.assertEqual(self.custom_board.get_counter_diagonal(Pos(3, 0)),
+                         self.custom_board.get_counter_diagonal(Pos(1, 2)))
+        self.assertEqual(self.custom_board.get_counter_diagonal(Pos(3, 0)),
+                         self.custom_board.get_counter_diagonal(Pos(2, 1)))
+        self.assertEqual(self.custom_board.get_counter_diagonal(Pos(3, 0)),
+                         self.custom_board.get_counter_diagonal(Pos(0, 3)))
 
         self.assertEqual([Tile.OPPONENT, Tile.EMPTY, Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(2, 0)))
-        self.assertEqual(self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(2, 0)),
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(1, 1)))
-        self.assertEqual(self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(2, 0)),
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(0, 2)))
+                         self.custom_board.get_counter_diagonal(Pos(2, 0)))
+        self.assertEqual(self.custom_board.get_counter_diagonal(Pos(2, 0)),
+                         self.custom_board.get_counter_diagonal(Pos(1, 1)))
+        self.assertEqual(self.custom_board.get_counter_diagonal(Pos(2, 0)),
+                         self.custom_board.get_counter_diagonal(Pos(0, 2)))
 
         self.assertEqual([Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 3)))
+                         self.custom_board.get_counter_diagonal(Pos(3, 3)))
 
     def test_get_diagonal_top_right_to_bottom_left_with_distance(self):
         self.assertEqual([Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(0, 0), 3))
+                         self.custom_board.get_counter_diagonal(Pos(0, 0), 3))
         self.assertEqual([Tile.EMPTY, Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(0, 1), 1))
+                         self.custom_board.get_counter_diagonal(Pos(0, 1), 1))
         self.assertEqual([Tile.OPPONENT, Tile.EMPTY],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(0, 2), 1))
+                         self.custom_board.get_counter_diagonal(Pos(0, 2), 1))
 
         self.assertEqual([Tile.MINE, Tile.OPPONENT, Tile.EMPTY, Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 0), 3))
+                         self.custom_board.get_counter_diagonal(Pos(3, 0), 3))
         self.assertEqual([Tile.EMPTY, Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 0), 1))
+                         self.custom_board.get_counter_diagonal(Pos(3, 0), 1))
         self.assertEqual([Tile.MINE, Tile.OPPONENT],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(0, 3), 1))
+                         self.custom_board.get_counter_diagonal(Pos(0, 3), 1))
         self.assertEqual([Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(3, 3), 1))
+                         self.custom_board.get_counter_diagonal(Pos(3, 3), 1))
 
         self.assertEqual([Tile.MINE, Tile.OPPONENT, Tile.EMPTY],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(1, 2), 1))
+                         self.custom_board.get_counter_diagonal(Pos(1, 2), 1))
         self.assertEqual([Tile.OPPONENT, Tile.EMPTY, Tile.MINE],
-                         self.custom_board.get_diagonal_top_right_to_bottom_left(Pos(2, 1), 1))
+                         self.custom_board.get_counter_diagonal(Pos(2, 1), 1))

@@ -23,13 +23,13 @@ class AI:
         weight_opponent_in_col = len(
             list(filter(lambda x: x == Tile.OPPONENT, board.get_col_at(pos)))) * Weight.OPPONENT
         weight_mine_top_left_to_bottom_right = len(
-            list(filter(lambda x: x == Tile.MINE, board.get_diagonal_top_left_to_bottom_right(pos)))) * Weight.MINE
+            list(filter(lambda x: x == Tile.MINE, board.get_principal_diagonal(pos)))) * Weight.MINE
         weight_mine_top_right_to_bottom_left = len(
-            list(filter(lambda x: x == Tile.MINE, board.get_diagonal_top_right_to_bottom_left(pos)))) * Weight.MINE
+            list(filter(lambda x: x == Tile.MINE, board.get_counter_diagonal(pos)))) * Weight.MINE
         weight_opponent_top_left_to_bottom_right = len(list(
-            filter(lambda x: x == Tile.OPPONENT, board.get_diagonal_top_left_to_bottom_right(pos)))) * Weight.OPPONENT
+            filter(lambda x: x == Tile.OPPONENT, board.get_principal_diagonal(pos)))) * Weight.OPPONENT
         weight_opponent_top_right_to_bottom_left = len(list(
-            filter(lambda x: x == Tile.OPPONENT, board.get_diagonal_top_right_to_bottom_left(pos)))) * Weight.OPPONENT
+            filter(lambda x: x == Tile.OPPONENT, board.get_counter_diagonal(pos)))) * Weight.OPPONENT
         return weight_mine_in_row + weight_mine_in_col + weight_opponent_in_row + weight_opponent_in_col + \
                weight_mine_top_left_to_bottom_right + weight_mine_top_right_to_bottom_left + \
                weight_opponent_top_left_to_bottom_right + weight_opponent_top_right_to_bottom_left

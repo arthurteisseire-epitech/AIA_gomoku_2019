@@ -39,12 +39,12 @@ class Board:
         col = [row[pos.x] for row in self.board]
         return Board.__get_subarray_with_distance(col, distance, pos.y)
 
-    def get_diagonal_top_left_to_bottom_right(self, pos, distance=0):
+    def get_principal_diagonal(self, pos, distance=0):
         offset = pos.x - pos.y
         diag = [row[offset + i] for i, row in enumerate(self.board) if 0 <= offset + i < len(row)]
         return Board.__get_subarray_with_distance(diag, distance, min(pos.x, pos.x - offset))
 
-    def get_diagonal_top_right_to_bottom_left(self, pos, distance=0):
+    def get_counter_diagonal(self, pos, distance=0):
         offset = pos.y + pos.x
         diag = [row[offset - i] for i, row in enumerate(self.board) if 0 <= offset - i < len(row)]
         return Board.__get_subarray_with_distance(diag, distance, max(0, pos.y - (self.size - len(diag))))
