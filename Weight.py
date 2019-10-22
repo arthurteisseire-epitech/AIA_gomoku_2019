@@ -47,7 +47,7 @@ class Weight:
     @staticmethod
     def __win_game(my_weight, opponent_weight):
         if my_weight == 2 and opponent_weight == 0:
-            return math.inf
+            return Weight.INFINITE
         return -1
 
     @staticmethod

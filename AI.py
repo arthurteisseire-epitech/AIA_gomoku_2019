@@ -1,5 +1,4 @@
-from Board import Board, Tile
-from random import randrange
+from Board import Board
 from Pos import Pos
 from Weight import Weight
 
@@ -7,10 +6,7 @@ from Weight import Weight
 class AI:
     @staticmethod
     def next_move(board: Board):
-        pos = Pos(randrange(board.size), randrange(board.size))
-        while board.get_info_at(pos) != Tile.EMPTY:
-            pos = Pos(randrange(board.size), randrange(board.size))
-        return pos
+        return AI.find_best_position(board)
 
     @staticmethod
     def find_best_position(board: Board):
