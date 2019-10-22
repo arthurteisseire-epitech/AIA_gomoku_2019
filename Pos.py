@@ -8,7 +8,3 @@ class Pos:
 
     def to_string(self):
         return str(self.x) + ',' + str(self.y)
-
-
-def get_position_from_index(size,  i):
-    return Pos(i // size, i % size)
