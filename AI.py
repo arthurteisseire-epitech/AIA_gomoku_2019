@@ -13,9 +13,6 @@ class AI:
         board_weight = []
         for y in range(0, board.size):
             for x in range(0, board.size):
-                try:
-                    board_weight.append(Weight.evaluation_of_position(board, Pos(y, x)))
-                except:
-                    board_weight.append(0)
+                board_weight.append(Weight.evaluation_of_position(board, Pos(y, x)))
         idx = board_weight.index(max(board_weight))
         return Pos(idx // board.size, idx % board.size)

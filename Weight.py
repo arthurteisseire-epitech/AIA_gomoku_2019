@@ -14,7 +14,7 @@ class Weight:
     @staticmethod
     def evaluation_of_position(board: Board, pos: Pos):
         if board.get_info_at(pos) != Tile.EMPTY:
-            raise Exception
+            return 0
         # instead of adding we should compare weights
         weight = Weight.__calc_weight_for(board.get_row_at(pos))
         weight += Weight.__calc_weight_for(board.get_col_at(pos))
