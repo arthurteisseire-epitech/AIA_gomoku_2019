@@ -8,5 +8,5 @@ def evaluation_function():
 
 class AlgoTest(TestCase):
 
-    def test_minimax(self):
+    def test_minimax_depth_0(self):
         self.assertEqual(evaluation_function(), Algo.minimax(evaluation_function, 0))
