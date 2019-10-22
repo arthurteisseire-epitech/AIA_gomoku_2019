@@ -1,6 +1,6 @@
 from unittest import TestCase
 from Board import Board, Tile
-from Pos import Pos
+from Pos import *
 from AI import AI
 from Weight import Weight
 
@@ -30,5 +30,5 @@ class AITest(TestCase):
             [Tile.MINE, Tile.EMPTY, Tile.MINE]
         ])
         expected = Pos(2, 1)
-        actual = AI.find_best_positions(custom_board)[0][0]
+        actual = AI.find_best_positions(custom_board)[0].pos
         self.assertEqual(expected, actual, "\nexpected: " + expected.to_string() + "\ngot: " + actual.to_string())
