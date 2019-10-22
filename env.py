@@ -1,0 +1,1 @@
+STONES_TO_WIN = 3
