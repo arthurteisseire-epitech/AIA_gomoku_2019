@@ -4,6 +4,7 @@ from Pos import Pos
 
 
 class Weight:
+    STONES_TO_WIN = 3
     OPPONENT = 2
     MINE = 2
     DAME = 0
@@ -22,6 +23,8 @@ class Weight:
 
     @staticmethod
     def __calc_weight_for(array):
+        if len(array) < Weight.STONES_TO_WIN:
+            return 0
         my_weight = Weight.__count_same_tile_in(array, Tile.MINE)
         opponent_weight = Weight.__count_same_tile_in(array, Tile.OPPONENT)
         return Weight.__attribute_weight(my_weight, opponent_weight)
