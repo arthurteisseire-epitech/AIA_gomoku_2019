@@ -1,5 +1,5 @@
 from Board import Board
-from Pos import Pos
+from Pos import *
 from Weight import Weight
 
 
@@ -15,4 +15,4 @@ class AI:
             for x in range(0, board.size):
                 board_weight.append(Weight.evaluation_of_position(board, Pos(y, x)))
         idx = board_weight.index(max(board_weight))
-        return Pos(idx // board.size, idx % board.size)
+        return get_position_from_index(board.size, idx)
