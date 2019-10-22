@@ -14,12 +14,11 @@ class AI:
 
     @staticmethod
     def find_best_position(board: Board):
-        weight = Weight()
         board_weight = []
         for y in range(0, board.size):
             for x in range(0, board.size):
                 try:
-                    board_weight.append(weight.evaluation_of_position(board, Pos(y, x)))
+                    board_weight.append(Weight.evaluation_of_position(board, Pos(y, x)))
                 except:
                     board_weight.append(0)
         idx = board_weight.index(max(board_weight))

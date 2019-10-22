@@ -4,12 +4,10 @@ from Pos import Pos
 
 
 class Weight:
-
-    def __init__(self):
-        self.OPPONENT = 2
-        self.MINE = 2
-        self.DAME = 0
-        self.INFINITE = math.inf
+    OPPONENT = 2
+    MINE = 2
+    DAME = 0
+    INFINITE = math.inf
 
     @staticmethod
     def __win_game(my_weight, opponent_weight):
@@ -53,43 +51,38 @@ class Weight:
         return max(weights)
 
     @staticmethod
-    def __count_same_tile_in_row(board: Board, pos: Pos, tile: Tile):
-        return len(list(filter(lambda x: x == tile, board.get_row_at(pos))))
-
-    @staticmethod
-    def __count_same_tile_in_col(board: Board, pos: Pos, tile: Tile):
-        return len(list(filter(lambda x: x == tile, board.get_col_at(pos))))
-
-    @staticmethod
-    def __count_same_tile_in_principal_diagonal(board: Board, pos: Pos, tile: Tile):
-        return len(list(filter(lambda x: x == tile, board.get_principal_diagonal(pos))))
-
-    @staticmethod
-    def __count_same_tile_in_counter_diagonal(board: Board, pos: Pos, tile: Tile):
-        return len(list(filter(lambda x: x == tile, board.get_counter_diagonal(pos))))
-
-    @staticmethod
     def __calc_weight_for_row(board: Board, pos: Pos):
-        my_weight = Weight.__count_same_tile_in_row(board, pos, Tile.MINE)
-        opponent_weight = Weight.__count_same_tile_in_row(board, pos, Tile.OPPONENT)
+        row = board.get_row_at(pos)
+        my_weight = Weight.__count_same_tile_in(row, Tile.MINE)
+        opponent_weight = Weight.__count_same_tile_in(row, Tile.OPPONENT)
         return Weight.__attribute_weight(my_weight, opponent_weight)
 
     @staticmethod
     def __calc_weight_for_col(board: Board, pos: Pos):
-        my_weight = Weight.__count_same_tile_in_col(board, pos, Tile.MINE)
-        opponent_weight = Weight.__count_same_tile_in_col(board, pos, Tile.OPPONENT)
+        col = board.get_col_at(pos)
+        my_weight = Weight.__count_same_tile_in(col, Tile.MINE)
+        opponent_weight = Weight.__count_same_tile_in(col, Tile.OPPONENT)
         return Weight.__attribute_weight(my_weight, opponent_weight)
 
     @staticmethod
     def __calc_weight_for_principal(board: Board, pos: Pos):
-        my_weight = Weight.__count_same_tile_in_principal_diagonal(board, pos, Tile.MINE)
-        opponent_weight = Weight.__count_same_tile_in_principal_diagonal(board, pos, Tile.OPPONENT)
+        principal_diagonal = board.get_principal_diagonal(pos)
+        my_weight = Weight.__count_same_tile_in(principal_diagonal, Tile.MINE)
+        opponent_weight = Weight.__count_same_tile_in(principal_diagonal, Tile.OPPONENT)
         return Weight.__attribute_weight(my_weight, opponent_weight)
 
-    def evaluation_of_position(self, board: Board, pos: Pos):
+    @staticmethod
+    def __calc_weight_for_counter(board: Board, pos: Pos):
+        counter_diagonal = board.get_counter_diagonal(pos)
+        my_weight = Weight.__count_same_tile_in(counter_diagonal, Tile.MINE)
+        opponent_weight = Weight.__count_same_tile_in(counter_diagonal, Tile.OPPONENT)
+        return Weight.__attribute_weight(my_weight, opponent_weight)
+
+    @staticmethod
+    def evaluation_of_position(board: Board, pos: Pos):
         if board.get_info_at(pos) != Tile.EMPTY:
             raise Exception
-        #instead of adding we should compare weights
+        # instead of adding we should compare weights
         weight = Weight.__calc_weight_for_row(board, pos)
         weight += Weight.__calc_weight_for_col(board, pos)
         weight += Weight.__calc_weight_for_principal(board, pos)
@@ -97,7 +90,5 @@ class Weight:
         return weight
 
     @staticmethod
-    def __calc_weight_for_counter(board: Board, pos: Pos):
-        my_weight = Weight.__count_same_tile_in_counter_diagonal(board, pos, Tile.MINE)
-        opponent_weight = Weight.__count_same_tile_in_counter_diagonal(board, pos, Tile.OPPONENT)
-        return Weight.__attribute_weight(my_weight, opponent_weight)
+    def __count_same_tile_in(array, tile):
+        return len(list(filter(lambda x: x == tile, array)))
