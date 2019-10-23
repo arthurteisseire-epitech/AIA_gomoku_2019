@@ -6,9 +6,9 @@ from copy import deepcopy
 
 class Algo:
     @staticmethod
-    def minimax(board, depth, alpha=-Weight.INFINITE, beta=Weight.INFINITE, maximizing_player=False):
+    def minimax(board, depth=-1, alpha=-Weight.INFINITE, beta=Weight.INFINITE, maximizing_player=False):
         e = Weight.evaluation_board(board)
-        if Weight.is_game_lose(e) or Weight.is_game_won(e):
+        if depth == 0 or Weight.is_game_lose(e) or Weight.is_game_won(e):
             return e
         if board.is_full():
             return Weight.DRAW

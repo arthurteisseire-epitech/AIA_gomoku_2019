@@ -21,7 +21,7 @@ class AI:
                 if board.get_info_at(pos) == Tile.EMPTY:
                     new_board = deepcopy(board)
                     new_board.set_info_at(pos, Tile.MINE)
-                    val = Algo.minimax(new_board, 5)
+                    val = Algo.minimax(new_board)
                 if val > max_val:
                     max_val = val
                     best_pos = pos
