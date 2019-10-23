@@ -8,10 +8,10 @@ class Algo:
     @staticmethod
     def minimax(board, depth, alpha=-Weight.INFINITE, beta=Weight.INFINITE, maximizing_player=False):
         e = Weight.evaluation_board(board)
-        if e == Weight.LOOSE_GAME or e == Weight.WIN_GAME:
+        if Weight.is_game_lose(e) or Weight.is_game_won(e):
             return e
         if board.is_full():
-            return 0
+            return Weight.DRAW
 
         if maximizing_player:
             max_eval = -Weight.INFINITE

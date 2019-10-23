@@ -7,6 +7,7 @@ from Pos import Pos
 class Weight:
     LOOSE_GAME = -10
     WIN_GAME = 10
+    DRAW = 0
     INFINITE = math.inf
 
     @staticmethod
@@ -44,3 +45,11 @@ class Weight:
     @staticmethod
     def __count_same_tile_in(array, tile):
         return len(list(filter(lambda x: x == tile, array)))
+
+    @staticmethod
+    def is_game_lose(e):
+        return e == Weight.LOOSE_GAME
+
+    @staticmethod
+    def is_game_won(e):
+        return e == Weight.WIN_GAME
