@@ -1,5 +1,5 @@
 from Board import Board, Tile
-from Pos import *
+from Pos import Pos
 from Weight import Weight
 from Algo import Algo
 from copy import deepcopy

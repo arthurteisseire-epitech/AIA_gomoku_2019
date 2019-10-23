@@ -8,9 +8,3 @@ class Pos:
 
     def to_string(self):
         return str(self.x) + ',' + str(self.y)
-
-
-class WeightBoardPosition:
-    def __init__(self, pos, weight):
-        self.pos = pos
-        self.weight = weight

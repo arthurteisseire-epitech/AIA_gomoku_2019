@@ -1,5 +1,6 @@
 from unittest import TestCase
-from Board import *
+from Board import Board, Tile
+from Pos import Pos
 from AI import AI
 
 
