@@ -1,6 +1,6 @@
-from Weight import Weight
-from Board import Tile
-from Pos import Pos
+from ai.Weight import Weight
+from board.Board import Tile
+from board.Pos import Pos
 from copy import deepcopy
 
 

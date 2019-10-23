@@ -1,7 +1,7 @@
-from Board import Board, Tile
-from Pos import Pos
-from Weight import Weight
-from Algo import Algo
+from board.Board import Board, Tile
+from board.Pos import Pos
+from ai.Weight import Weight
+from ai.Algo import Algo
 from copy import deepcopy
 
 

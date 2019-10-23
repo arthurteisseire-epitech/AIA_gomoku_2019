@@ -1,7 +1,7 @@
 from unittest import TestCase
-from Board import Board, Tile
-from Pos import *
-from AI import AI
+from board.Board import Board, Tile
+from board.Pos import *
+from ai.AI import AI
 
 
 class AITest(TestCase):

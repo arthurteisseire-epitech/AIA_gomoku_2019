@@ -1,7 +1,7 @@
 import math
 import env
-from Board import Board, Tile
-from Pos import Pos
+from board.Board import Board, Tile
+from board.Pos import Pos
 
 
 class Weight:
