@@ -34,10 +34,10 @@ class Weight:
     @staticmethod
     def __calc_val_for(array):
         my_consecutive_tiles = Weight.__count_same_tile_in(array, Tile.MINE)
-        if my_consecutive_tiles == 3:
+        if my_consecutive_tiles == env.STONES_TO_WIN:
             return Weight.WIN_GAME
         opponent_consecutive_tiles = Weight.__count_same_tile_in(array, Tile.OPPONENT)
-        if opponent_consecutive_tiles == 3:
+        if opponent_consecutive_tiles == env.STONES_TO_WIN:
             return Weight.LOOSE_GAME
         return 0
 
