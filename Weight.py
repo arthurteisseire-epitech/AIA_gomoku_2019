@@ -6,15 +6,15 @@ from Pos import Pos
 
 class Weight:
     LOOSE_GAME = 10
-    OPPONENT = 2
+    OPPONENT = 6
     MINE = 3
     DAME = 1
     INFINITE = math.inf
 
     @staticmethod
     def evaluation_of_position(board: Board, pos: Pos):
-        if board.get_info_at(pos) != Tile.EMPTY:
-            return 0
+        # if board.get_info_at(pos) != Tile.EMPTY:
+        #     return 0
         # instead of adding we should compare weights
         weight = Weight.__calc_weight_for(board.get_row_at(pos))
         weight += Weight.__calc_weight_for(board.get_col_at(pos))

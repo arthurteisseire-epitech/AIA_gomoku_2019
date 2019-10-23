@@ -17,6 +17,12 @@ class Board:
             self.board = board
         self.size = size
 
+    def display(self):
+        print("----------------\nBoard:")
+        for row in self.board:
+            print(*row)
+        print("----------------")
+
     def get_info_at(self, pos: Pos):
         if not self.is_in(pos):
             return Tile.OUT_OF_BOUND
