@@ -22,9 +22,10 @@ class AI:
         for y in range(0, board.size):
             for x in range(0, board.size):
                 pos = Pos(y, x)
-                # weight = Weight.evaluation_of_position(board, pos)
-                weight = 0
+                weight = -Weight.INFINITE
                 if board.get_info_at(pos) == Tile.EMPTY:
-                    weight = Algo.minimax(board, pos, Weight.evaluation_of_position, 3)
+                    new_board = deepcopy(board)
+                    new_board.set_info_at(pos, Tile.MINE)
+                    weight = Algo.minimax(new_board, Weight.evaluation_of_position, 5)
                 board_weight.append(weight)
         return board_weight

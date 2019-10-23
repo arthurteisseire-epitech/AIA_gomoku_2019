@@ -23,6 +23,12 @@ class Board:
             print(*row)
         print("----------------")
 
+    def is_full(self):
+        for row in self.board:
+            if len(list(filter(lambda tile: tile == Tile.EMPTY, row))) > 0:
+                return False
+        return True
+
     def get_info_at(self, pos: Pos):
         if not self.is_in(pos):
             return Tile.OUT_OF_BOUND
