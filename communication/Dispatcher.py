@@ -58,7 +58,7 @@ class Dispatcher:
         raise
 
     def begin(self, *unused):
-        middle = self.board.size // 2 + 1
+        middle = self.board.size // 2
         pos = Pos(middle, middle)
         self.board.set_info_at(pos, Tile.OPPONENT)
         return pos.to_string()
