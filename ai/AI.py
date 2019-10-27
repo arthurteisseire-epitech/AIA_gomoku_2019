@@ -1,11 +1,9 @@
 from board.Board import Board, Tile
 from board.Pos import Pos
 from ai.Evaluation import Evaluation
-from ai.Algo import Algo
 from ai.find_potential_positions import find_potential_positions
 from copy import deepcopy
 from ai.Player import Player
-from communication.output import debug
 
 
 class AI:
@@ -27,5 +25,4 @@ class AI:
                 if val > max_val:
                     max_val = val
                     best_pos = pos
-        debug(str(max_val))
         return best_pos

@@ -1,5 +1,4 @@
 import math
-import env
 from board.Board import Board, Tile
 from board.Pos import Pos
 from ai.Player import Player
@@ -44,7 +43,6 @@ class Evaluation:
                 weight = 0
                 break
             weight *= 20
-            # weight = Evaluation.evaluate_stone(tile, player, weight)
         return weight
 
     @staticmethod
