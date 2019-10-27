@@ -72,3 +72,40 @@ class Board:
         left_i = max(0, i - distance)
         right_i = min(len(array), i + distance + 1)
         return array[left_i:right_i]
+
+    def get_positions_around(self, pos):
+        positions_around = []
+        self.__append_if_in(positions_around, Pos(pos.y, pos.x + 1))
+        self.__append_if_in(positions_around, Pos(pos.y, pos.x + 2))
+        self.__append_if_in(positions_around, Pos(pos.y, pos.x - 1))
+        self.__append_if_in(positions_around, Pos(pos.y, pos.x - 2))
+
+        self.__append_if_in(positions_around, Pos(pos.y + 1, pos.x))
+        self.__append_if_in(positions_around, Pos(pos.y + 2, pos.x))
+        self.__append_if_in(positions_around, Pos(pos.y - 1, pos.x))
+        self.__append_if_in(positions_around, Pos(pos.y - 2, pos.x))
+
+        self.__append_if_in(positions_around, Pos(pos.y + 1, pos.x + 1))
+        self.__append_if_in(positions_around, Pos(pos.y + 2, pos.x + 1))
+        self.__append_if_in(positions_around, Pos(pos.y - 1, pos.x + 1))
+        self.__append_if_in(positions_around, Pos(pos.y - 2, pos.x + 1))
+
+        self.__append_if_in(positions_around, Pos(pos.y + 1, pos.x + 2))
+        self.__append_if_in(positions_around, Pos(pos.y + 2, pos.x + 2))
+        self.__append_if_in(positions_around, Pos(pos.y - 1, pos.x + 2))
+        self.__append_if_in(positions_around, Pos(pos.y - 2, pos.x + 2))
+
+        self.__append_if_in(positions_around, Pos(pos.y + 1, pos.x - 1))
+        self.__append_if_in(positions_around, Pos(pos.y + 2, pos.x - 1))
+        self.__append_if_in(positions_around, Pos(pos.y - 1, pos.x - 1))
+        self.__append_if_in(positions_around, Pos(pos.y - 2, pos.x - 1))
+
+        self.__append_if_in(positions_around, Pos(pos.y + 1, pos.x - 2))
+        self.__append_if_in(positions_around, Pos(pos.y + 2, pos.x - 2))
+        self.__append_if_in(positions_around, Pos(pos.y - 1, pos.x - 2))
+        self.__append_if_in(positions_around, Pos(pos.y - 2, pos.x - 2))
+        return positions_around
+
+    def __append_if_in(self, array, pos):
+        if self.is_in(pos):
+            array.append(pos)

@@ -19,6 +19,9 @@ class AlgoTest(TestCase):
 
     def test_evaluation_easy(self):
         custom_board = Board(19, [
+            [Tile.EMPT, Tile.MINE, Tile.OPPO, Tile.OPPO, Tile.OPPO, Tile.OPPO, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
+            [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.MINE, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
+            [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.MINE, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
@@ -26,9 +29,6 @@ class AlgoTest(TestCase):
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
-            [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.MINE, Tile.MINE, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
-            [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.OPPO, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
-            [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.OPPO, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
@@ -39,5 +39,7 @@ class AlgoTest(TestCase):
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
             [Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT, Tile.EMPT],
         ])
-        actual = Evaluation.evaluation_board(custom_board, Player.MINE)
-        self.assertEqual(actual, 64)
+        # actual = Evaluation.evaluation_board(custom_board, Player.MINE)
+        actual = AI.find_best_position(custom_board)
+        expected = Pos(0, 6)
+        self.assertEqual(expected, actual, "expected: " + expected.to_string() + ", actual: " + actual.to_string())

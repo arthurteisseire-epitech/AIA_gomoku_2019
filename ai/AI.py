@@ -4,6 +4,8 @@ from ai.Evaluation import Evaluation
 from ai.Algo import Algo
 from ai.find_potential_positions import find_potential_positions
 from copy import deepcopy
+from ai.Player import Player
+from communication.output import debug
 
 
 class AI:
@@ -20,8 +22,10 @@ class AI:
             if board.get_info_at(pos) == Tile.EMPT:
                 new_board = deepcopy(board)
                 new_board.set_info_at(pos, Tile.MINE)
-                val = Algo.minimax(new_board, 1)
+                val = Evaluation.evaluation_board(new_board, Player.MINE)
+                # val = Algo.minimax(new_board, 1)
                 if val > max_val:
                     max_val = val
                     best_pos = pos
+        debug(str(max_val))
         return best_pos

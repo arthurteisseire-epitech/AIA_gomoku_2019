@@ -35,31 +35,41 @@ class Evaluation:
 
     @staticmethod
     def calc_weight_for_left(array, middle_idx, player):
-        weight = 0
+        weight = 1
         for i in range(middle_idx - 1, -1, -1):
             tile = array[i]
             if tile == Tile.EMPT:
-                weight += 1
-            if tile == Evaluation.get_my_stone(player):
-                weight += 3
+                break
             if tile == Evaluation.get_opponent_stone(player):
                 weight = 0
                 break
+            weight *= 20
+            # weight = Evaluation.evaluate_stone(tile, player, weight)
         return weight
 
     @staticmethod
     def calc_weight_for_right(array, middle_idx, player):
-        weight = 0
+        weight = 1
         for i in range(middle_idx + 1, len(array)):
             tile = array[i]
             if tile == Tile.EMPT:
-                weight += 1
-            if tile == Evaluation.get_my_stone(player):
-                weight += 3
+                break
             if tile == Evaluation.get_opponent_stone(player):
                 weight = 0
                 break
+            weight *= 20
         return weight
+
+    @staticmethod
+    def evaluate_stone(tile, player, weight):
+        w = 0
+        if tile == Tile.EMPT:
+            w = weight + 2
+        elif tile == Evaluation.get_my_stone(player):
+            w = weight * 16
+        elif tile == Evaluation.get_opponent_stone(player):
+            w = weight * 50
+        return w
 
     @staticmethod
     def get_stones(board, player):
@@ -81,7 +91,7 @@ class Evaluation:
 
     @staticmethod
     def get_opponent_stone(player: Player):
-        return not Evaluation.get_my_stone(player)
+        return Tile.MINE if player == Player.OPPONENT else Tile.OPPO
 
     @staticmethod
     def __count_same_tile_in(array, tile):
