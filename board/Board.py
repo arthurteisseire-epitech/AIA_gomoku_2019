@@ -59,7 +59,11 @@ class Board:
     def get_counter_diagonal(self, pos, distance=0):
         offset = pos.y + pos.x
         diag = [row[offset - i] for i, row in enumerate(self.board) if 0 <= offset - i < len(row)]
-        return Board.__get_subarray_with_distance(diag, distance, max(0, pos.y - (self.size - len(diag))))
+        if offset < self.size:
+            idx = pos.y
+        else:
+            idx = pos.y - (offset - (self.size - 1))
+        return Board.__get_subarray_with_distance(diag, distance, idx)
 
     @staticmethod
     def __get_subarray_with_distance(array, distance, i):
