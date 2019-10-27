@@ -3,16 +3,16 @@ from board.Pos import Pos
 
 
 class Tile(Enum):
-    EMPTY = 0
+    EMPT = 0
     MINE = 1
-    OPPONENT = 2
+    OPPO = 2
     OUT_OF_BOUND = 3
 
 
 class Board:
     def __init__(self, size, board=None):
         if board is None:
-            self.board = [[Tile.EMPTY for i in range(0, size)] for i in range(0, size)]
+            self.board = [[Tile.EMPT for i in range(0, size)] for i in range(0, size)]
         else:
             self.board = board
         self.size = size
@@ -25,7 +25,7 @@ class Board:
 
     def is_full(self):
         for row in self.board:
-            if len(list(filter(lambda tile: tile == Tile.EMPTY, row))) > 0:
+            if len(list(filter(lambda tile: tile == Tile.EMPT, row))) > 0:
                 return False
         return True
 

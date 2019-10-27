@@ -18,7 +18,7 @@ class AI:
             for x in range(0, board.size):
                 pos = Pos(y, x)
                 val = -Evaluation.INFINITE
-                if board.get_info_at(pos) == Tile.EMPTY:
+                if board.get_info_at(pos) == Tile.EMPT:
                     new_board = deepcopy(board)
                     new_board.set_info_at(pos, Tile.MINE)
                     val = Algo.minimax(new_board, 3)

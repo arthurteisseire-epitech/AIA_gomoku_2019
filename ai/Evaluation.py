@@ -2,6 +2,7 @@ import math
 import env
 from board.Board import Board, Tile
 from board.Pos import Pos
+from ai.Player import Player
 
 
 class Evaluation:
@@ -11,7 +12,7 @@ class Evaluation:
     INFINITE = math.inf
 
     @staticmethod
-    def evaluation_board(board: Board):
+    def evaluation_board(board: Board, player_turn: Player):
         for i in range(0, env.STONES_TO_WIN):
             val = Evaluation.__calc_val_for(board.get_row_at(Pos(i, 0)))
             if val != 0:
@@ -37,7 +38,7 @@ class Evaluation:
         my_consecutive_tiles = Evaluation.__count_same_tile_in(array, Tile.MINE)
         if my_consecutive_tiles == env.STONES_TO_WIN:
             return Evaluation.WIN_GAME
-        opponent_consecutive_tiles = Evaluation.__count_same_tile_in(array, Tile.OPPONENT)
+        opponent_consecutive_tiles = Evaluation.__count_same_tile_in(array, Tile.OPPO)
         if opponent_consecutive_tiles == env.STONES_TO_WIN:
             return Evaluation.LOOSE_GAME
         return 0

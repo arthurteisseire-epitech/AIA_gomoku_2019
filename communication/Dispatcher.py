@@ -60,12 +60,12 @@ class Dispatcher:
     def begin(self, *unused):
         middle = self.board.size // 2
         pos = Pos(middle, middle)
-        self.board.set_info_at(pos, Tile.OPPONENT)
+        self.board.set_info_at(pos, Tile.OPPO)
         return pos.to_string()
 
     def turn(self, args):
         input_pos = args[0].split(',')
-        self.board.set_info_at(Pos(int(input_pos[1]), int(input_pos[0])), Tile.OPPONENT)
+        self.board.set_info_at(Pos(int(input_pos[1]), int(input_pos[0])), Tile.OPPO)
         return self.ai_play()
 
     def about(self, *unused):
