@@ -2,6 +2,7 @@ from ai.Evaluation import Evaluation
 from ai.Player import Player
 from board.Board import Tile
 from board.Pos import Pos
+from ai.find_potential_positions import find_potential_positions
 from copy import deepcopy
 
 
@@ -16,29 +17,27 @@ class Algo:
 
         if maximizing_player:
             max_eval = -Evaluation.INFINITE
-            for y in range(0, board.size):
-                for x in range(0, board.size):
-                    tmp_pos = Pos(y, x)
-                    if board.get_info_at(tmp_pos) == Tile.EMPT:
-                        new_board = deepcopy(board)
-                        new_board.set_info_at(tmp_pos, Tile.MINE)
-                        tmp_eval = Algo.minimax(new_board, depth - 1, alpha, beta, False)
-                        max_eval = max(tmp_eval, max_eval)
-                        alpha = max(alpha, tmp_eval)
-                        if beta <= alpha:
-                            return max_eval
+            positions = find_potential_positions(board)
+            for tmp_pos in positions:
+                if board.get_info_at(tmp_pos) == Tile.EMPT:
+                    new_board = deepcopy(board)
+                    new_board.set_info_at(tmp_pos, Tile.MINE)
+                    tmp_eval = Algo.minimax(new_board, depth - 1, alpha, beta, False)
+                    max_eval = max(tmp_eval, max_eval)
+                    alpha = max(alpha, tmp_eval)
+                    if beta <= alpha:
+                        return max_eval
             return max_eval
         else:
             min_eval = Evaluation.INFINITE
-            for y in range(0, board.size):
-                for x in range(0, board.size):
-                    tmp_pos = Pos(y, x)
-                    if board.get_info_at(tmp_pos) == Tile.EMPT:
-                        new_board = deepcopy(board)
-                        new_board.set_info_at(tmp_pos, Tile.OPPO)
-                        tmp_eval = Algo.minimax(new_board, depth - 1, alpha, beta, True)
-                        min_eval = min(tmp_eval, min_eval)
-                        beta = min(beta, tmp_eval)
-                        if beta <= alpha:
-                            return min_eval
+            positions = find_potential_positions(board)
+            for tmp_pos in positions:
+                if board.get_info_at(tmp_pos) == Tile.EMPT:
+                    new_board = deepcopy(board)
+                    new_board.set_info_at(tmp_pos, Tile.OPPO)
+                    tmp_eval = Algo.minimax(new_board, depth - 1, alpha, beta, True)
+                    min_eval = min(tmp_eval, min_eval)
+                    beta = min(beta, tmp_eval)
+                    if beta <= alpha:
+                        return min_eval
             return min_eval
