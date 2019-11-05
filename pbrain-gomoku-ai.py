@@ -3,4 +3,9 @@
 from communication.Server import Server
 
 
-Server.start()
+def main():
+    Server.start()
+
+
+if __name__ == "__main__":
+    main()
