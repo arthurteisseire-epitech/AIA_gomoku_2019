@@ -1,6 +1,6 @@
 from unittest import TestCase
-from board.Board import Board, Tile
-from board.Pos import Pos
+from Board import Board, Tile
+from Pos import Pos
 
 
 class BoardTest(TestCase):

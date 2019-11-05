@@ -1,7 +1,7 @@
 from sys import stdin
-from communication.Dispatcher import Dispatcher
-from communication.output import send
-from board.Board import Board
+from Dispatcher import Dispatcher
+from output import send
+from Board import Board
 
 
 class Server:

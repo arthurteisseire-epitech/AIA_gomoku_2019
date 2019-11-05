@@ -1,5 +1,5 @@
 from enum import Enum
-from board.Pos import Pos
+from Pos import Pos
 
 
 class Tile(Enum):

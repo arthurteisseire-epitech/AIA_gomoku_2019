@@ -1,8 +1,7 @@
-from ai.Evaluation import Evaluation
-from ai.Player import Player
-from board.Board import Tile
-from board.Pos import Pos
-from ai.find_potential_positions import find_potential_positions
+from Evaluation import Evaluation
+from Player import Player
+from Board import Tile
+from find_potential_positions import find_potential_positions
 from copy import deepcopy
 
 

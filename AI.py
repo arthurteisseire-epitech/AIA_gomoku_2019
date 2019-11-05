@@ -1,9 +1,9 @@
-from board.Board import Board, Tile
-from board.Pos import Pos
-from ai.Evaluation import Evaluation
-from ai.find_potential_positions import find_potential_positions
+from Board import Board, Tile
+from Pos import Pos
+from Evaluation import Evaluation
+from find_potential_positions import find_potential_positions
 from copy import deepcopy
-from ai.Player import Player
+from Player import Player
 
 
 class AI:

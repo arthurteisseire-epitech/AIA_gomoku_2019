@@ -1,7 +1,7 @@
 import math
-from board.Board import Board, Tile
-from board.Pos import Pos
-from ai.Player import Player
+from Board import Board, Tile
+from Pos import Pos
+from Player import Player
 
 
 class Evaluation:

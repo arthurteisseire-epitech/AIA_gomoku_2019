@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from communication.Server import Server
+from Server import Server
 
 
 def main():

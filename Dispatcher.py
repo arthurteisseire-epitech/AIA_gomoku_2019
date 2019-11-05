@@ -1,8 +1,8 @@
 import re
 import sys
-from ai.AI import AI
-from board.Board import Board, Tile
-from board.Pos import Pos
+from AI import AI
+from Board import Board, Tile
+from Pos import Pos
 
 
 class Dispatcher:

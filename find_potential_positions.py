@@ -1,5 +1,5 @@
-from board.Board import Tile
-from board.Pos import Pos
+from Board import Tile
+from Pos import Pos
 
 
 def find_potential_positions(board):

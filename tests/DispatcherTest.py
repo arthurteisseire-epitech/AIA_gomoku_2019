@@ -1,6 +1,6 @@
 from unittest import TestCase
-from communication.Dispatcher import Dispatcher
-from board.Board import Board
+from Dispatcher import Dispatcher
+from Board import Board
 
 
 class DispatcherTest(TestCase):
