@@ -36,7 +36,7 @@ class Dispatcher:
     def start(self, args):
         size = int(args[0])
         if size <= 0:
-            raise
+            return "ERROR size_to_big"
         self.board = Board(size)
         return "OK"
 
