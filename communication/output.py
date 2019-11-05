@@ -1,9 +1,5 @@
-from sys import stdout
-
-
 def send(s):
-    print(s)
-    stdout.flush()
+    print(s, flush=True)
 
 
 def debug(s):
