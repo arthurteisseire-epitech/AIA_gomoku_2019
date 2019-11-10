@@ -2,6 +2,8 @@ import math
 from Board import Board, Tile
 from Pos import Pos
 from Player import Player
+from itertools import groupby
+from copy import deepcopy
 
 
 class Evaluation:
@@ -13,24 +15,58 @@ class Evaluation:
     @staticmethod
     def evaluation_board(board: Board, player: Player):
         my_stones, opponent_stones = Evaluation.get_stones(board, player)
-        my_weight = 0
 
-        for pos in my_stones:
-            my_weight += Evaluation.calc_weight_for(board.get_row_at(pos, 4), player)
-            my_weight += Evaluation.calc_weight_for(board.get_col_at(pos, 4), player)
-            my_weight += Evaluation.calc_weight_for(board.get_principal_diagonal(pos, 4), player)
-            my_weight += Evaluation.calc_weight_for(board.get_counter_diagonal(pos, 4), player)
+        my_weight = Evaluation.calc_weight_for(board, player, my_stones, Evaluation.is_won)
+        if my_weight == math.inf:
+            return my_weight
 
+        opponent_weight = Evaluation.calc_weight_for(board, Evaluation.get_opponent(player), opponent_stones, Evaluation.can_win)
+        if opponent_weight == math.inf:
+            return -opponent_weight
         return my_weight
 
     @staticmethod
-    def calc_weight_for(array, player):
+    def calc_weight_for(board, player, stones, check_win_func):
+        weight = 0
+        for pos in stones:
+            weight += Evaluation.calc_array_weight_for(board.get_row_at(pos, 4), player, check_win_func)
+            weight += Evaluation.calc_array_weight_for(board.get_col_at(pos, 4), player, check_win_func)
+            weight += Evaluation.calc_array_weight_for(board.get_principal_diagonal(pos, 4), player, check_win_func)
+            weight += Evaluation.calc_array_weight_for(board.get_counter_diagonal(pos, 4), player, check_win_func)
+        return weight
+
+    @staticmethod
+    def calc_array_weight_for(array, player, check_win_func):
         arrlen = len(array)
+        if check_win_func(array, Evaluation.get_my_stone(player)):
+            return math.inf
         if arrlen != 9:
             return 0
         middle_idx = (arrlen - 1) // 2
         weight = Evaluation.calc_weight_for_left(array, middle_idx, player) + Evaluation.calc_weight_for_right(array, middle_idx, player)
         return weight
+
+    @staticmethod
+    def is_won(array, tile):
+        return Evaluation.are_consecutive(array, tile, 5)
+
+    @staticmethod
+    def can_win(array, tile):
+        for i in range(len(array)):
+            counter = 0
+            if array[i] == Tile.EMPT:
+                for t in array[i + 1:]:
+                    if t != tile:
+                        break
+                    else:
+                        counter += 1
+                if counter == 4:
+                    return True
+        return False
+
+    @staticmethod
+    def are_consecutive(array, tile, nb):
+        return any(sum(1 for _ in g) >= nb for t, g in groupby(array) if t == tile)
 
     @staticmethod
     def calc_weight_for_left(array, middle_idx, player):
@@ -59,17 +95,6 @@ class Evaluation:
         return weight
 
     @staticmethod
-    def evaluate_stone(tile, player, weight):
-        w = 0
-        if tile == Tile.EMPT:
-            w = weight + 2
-        elif tile == Evaluation.get_my_stone(player):
-            w = weight * 16
-        elif tile == Evaluation.get_opponent_stone(player):
-            w = weight * 50
-        return w
-
-    @staticmethod
     def get_stones(board, player):
         my_stones = []
         opponent_stones = []
@@ -90,6 +115,10 @@ class Evaluation:
     @staticmethod
     def get_opponent_stone(player: Player):
         return Tile.MINE if player == Player.OPPONENT else Tile.OPPO
+
+    @staticmethod
+    def get_opponent(player: Player):
+        return Player.MINE if player == Player.OPPONENT else Player.OPPONENT
 
     @staticmethod
     def __count_same_tile_in(array, tile):
