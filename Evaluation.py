@@ -3,7 +3,6 @@ from Board import Board, Tile
 from Pos import Pos
 from Player import Player
 from itertools import groupby
-from copy import deepcopy
 
 
 class Evaluation:
@@ -52,6 +51,15 @@ class Evaluation:
 
     @staticmethod
     def can_win(array, tile):
+        is_over = Evaluation.check_empty_then_four_consecutive(array, tile)
+        if is_over:
+            return True
+        rev_array = list(reversed(array))
+        is_over = Evaluation.check_empty_then_four_consecutive(rev_array, tile)
+        return is_over
+
+    @staticmethod
+    def check_empty_then_four_consecutive(array, tile):
         for i in range(len(array)):
             counter = 0
             if array[i] == Tile.EMPT:
